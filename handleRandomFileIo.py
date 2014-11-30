@@ -1,7 +1,7 @@
 import os
 from timeClass import timeFormate
 
-def analyseRandomFileIo(root,fileName):
+def analyseRandomFileIo(root,fileName,filedir):
 	fileObject = open(os.path.join(root,fileName))
 	times = fileName.split('_')
 	timeFormates = timeFormate(times)
@@ -13,3 +13,6 @@ def analyseRandomFileIo(root,fileName):
 	request = temp[1:temp.find("Request")]
 	request = request.replace(' ','')
 	print (timeFormates.year,timeFormates.month,timeFormates.day,timeFormates.hour,timeFormates.minute,timeFormates.second,bandWith,request)
+	fileObject = open(filedir,"a")
+	fileObject.writelines(timeFormates.year+","+timeFormates.month+","+timeFormates.day+","+timeFormates.hour+","+timeFormates.minute+","+timeFormates.second+","+bandWith+","+request+"\n")
+	fileObject.close()
