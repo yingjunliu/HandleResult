@@ -1,7 +1,7 @@
 import os
 from timeClass import timeFormate
 
-def analyseCPU(root,fileName):
+def analyseCPU(root,fileName,filedir):
 	fileObject = open(os.path.join(root,fileName))
 	times = fileName.split('_')
 	timeFormates = timeFormate(times)
@@ -12,3 +12,6 @@ def analyseCPU(root,fileName):
 	excTime = excTime.replace(' ','')
 	excTime = excTime.replace('\n','')
 	print (timeFormates.year,timeFormates.month,timeFormates.day,timeFormates.hour,timeFormates.minute,timeFormates.second,excTime)
+	fileObject = open(filedir,"a")
+	fileObject.writelines(timeFormates.year+","+timeFormates.month+","+timeFormates.day+","+timeFormates.hour+","+timeFormates.minute+","+timeFormates.second+","+excTime+"\n")
+	fileObject.close()
